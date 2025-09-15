@@ -5,11 +5,11 @@ A python app that queries a SQL database for information regarding the subscript
 
 ## Project Goals
 
-*Queries Student Information
-*Display Subscription information for a student (When subscribed, When expires, Renewal Cost, Student Level)
-*Webscraping for auto pricing (Advanced Goal)
-*Pulls Reports
-*SQL Backend that normalizes data, and tracks data with a python front end
+* Queries Student Information
+* Display Subscription information for a student (When subscribed, When expires, Renewal Cost, Student Level)
+* Webscraping for auto pricing (Advanced Goal)
+* Pulls Reports
+* SQL Backend that normalizes data, and tracks data with a python front end
 
 
 ## Team Members
