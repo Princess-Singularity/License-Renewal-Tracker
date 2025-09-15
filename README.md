@@ -14,9 +14,9 @@ A python app that queries a SQL database for information regarding the subscript
 
 ## Team Members
 
->Corra Stimson
->Dylan May
->Go Muang
+>Corra Stimson,
+>Dylan May,
+>Go Muang,
 >Tommy Martin
 
 
