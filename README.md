@@ -17,6 +17,7 @@ applicable information.
 - Enable Staff to ensure that money is not being unnecissarily spent on the same liscenses due to intra-departamental isolation.
 
 ## Team Members
+
 **Student Members:**
 >Corra Stimson,
 >Dylan May,
@@ -24,8 +25,8 @@ applicable information.
 >Tommy Martin
 
 **Advisors**
-Michael Tompkins (*faculty advisor*)
-Rexroy Scott (*I.T. advisor*)
+>Michael Tompkins (*faculty advisor*)
+>Rexroy Scott (*I.T. advisor*)
 
 
 
