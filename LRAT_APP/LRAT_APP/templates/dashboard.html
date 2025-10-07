@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        :root {
+            --mizzou-gold: #F1B82D;
+            --mizzou-black: #000000;
+            --mizzou-white: #FFFFFF;
+            --mizzou-light-gold: #F5C842;
+            --mizzou-dark-gold: #D4A017;
+            --mizzou-gray: #666666;
+            --mizzou-light-gray: #F8F8F8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--mizzou-light-gray) 0%, var(--mizzou-white) 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-dark-gold) 100%);
+            border-radius: 12px;
+            color: var(--mizzou-black);
+            box-shadow: 0 4px 15px rgba(241, 184, 45, 0.3);
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dashboard-content {
+            background-color: var(--mizzou-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .welcome-message {
+            color: var(--mizzou-gray);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>User Dashboard</h1>
+        </div>
+</body>
+</html>
