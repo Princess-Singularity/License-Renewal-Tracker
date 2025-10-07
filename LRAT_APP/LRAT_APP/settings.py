@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'DATABASE_APP',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +50,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'LRAT_APP.urls'
+
+# Use the built-in User model
+AUTH_USER_MODEL = 'DATABASE_APP.CustomUser'
 
 TEMPLATES = [
     {
