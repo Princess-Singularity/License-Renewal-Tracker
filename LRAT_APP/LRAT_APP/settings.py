@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,13 +52,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'LRAT_APP.urls'
 
-# Use the built-in User model
-AUTH_USER_MODEL = 'DATABASE_APP.CustomUser'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'LRAT_APP' / 'templates'], #template directory path
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +122,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# URLs for loging in and sending user to dashbaord 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/login/'

@@ -1,0 +1,31 @@
+# Virtual Environment
+ENV_DIR/
+venv/
+env/
+ENV/
+temp/
+.venv/
+
+# Python
+*.pyc
+__pycache__/
+
+# Django
+*.log
+*.pot
+db.sqlite3
+local_settings.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment variables
+.env
