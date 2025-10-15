@@ -8,7 +8,7 @@ temp/
 
 # Python
 *.pyc
-__pycache__/
+*__pycache__/
 
 # Django
 *.log
