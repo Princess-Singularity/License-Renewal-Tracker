@@ -1,0 +1,8 @@
+#Ignore log files
+*.log
+__pycahce__/
+#Ignore temp folders
+temp/
+#Ignore venv
+lrate_venv/
+
