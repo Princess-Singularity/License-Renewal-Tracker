@@ -30,3 +30,4 @@ Desktop.ini
 # Environment variables
 .env
 *.pyc
+*.pyc
