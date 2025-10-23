@@ -117,8 +117,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIR = [BASE_DIR/'static']
+#couldn't get static file to work. finally did and this is what I ended up with.
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "LRAT_APP" / "static",]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

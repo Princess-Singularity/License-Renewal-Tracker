@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from . import views  #Import views 
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,5 +12,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('logout/', views.user_logout, name='logout'),
 ]
+
+# use for development to load static files without restarting
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
 
 

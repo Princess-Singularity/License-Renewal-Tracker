@@ -1,0 +1,139 @@
+:root {
+    --mizzou-gold: #F1B82D;
+    --mizzou-black: #000000;
+    --mizzou-white: #FFFFFF;
+    --mizzou-light-gold: #F5C842;
+    --mizzou-dark-gold: #D4A017;
+    --mizzou-gray: #666666;
+    --mizzou-light-gray: #F8F8F8;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-dark-gold) 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    background-color: var(--mizzou-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 420px;
+    border: 3px solid var(--mizzou-gold);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    color: var(--mizzou-black);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.login-header p {
+    color: var(--mizzou-gray);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--mizzou-black);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--mizzou-gold);
+    box-shadow: 0 0 0 3px rgba(241, 184, 45, 0.2);
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-dark-gold) 100%);
+    color: var(--mizzou-black);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, var(--mizzou-light-gold) 0%, var(--mizzou-gold) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(241, 184, 45, 0.3);
+}
+
+.error-messages {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 2px solid #f5c6cb;
+}
+
+.error-messages ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.forgot-password a {
+    color: var(--mizzou-black);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password a:hover {
+    color: var(--mizzou-dark-gold);
+    text-decoration: underline;
+}
+
+.mizzou-branding {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--mizzou-light-gray);
+}
+
+.mizzou-branding small {
+    color: var(--mizzou-gray);
+    font-size: 0.85rem;
+}
