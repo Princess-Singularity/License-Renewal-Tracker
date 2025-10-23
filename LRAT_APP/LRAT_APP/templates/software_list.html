@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRAT - Software List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body class="dashboard-page">
+
+    <header>
+        <h1>License Renewal Application Tracker (LRAT)</h1>
+        <p>Available Software</p>
+    </header>
+
+    <main>
+        <h2>All Available Software ({{ total_count }} entries)</h2>
+
+        {% if software_entries %}
+            <table>
+                <tr>
+                    <th>Software Name</th>
+                    <th>Cost</th>
+                    <th>Term (months)</th>
+                    <th>License Start</th>
+                    <th>License End</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                {% for software in software_entries %}
+                <tr>
+                    <td>{{ software.subscription_name }}</td>
+                    <td>${{ software.cost }}</td>
+                    <td>{{ software.term }}</td>
+                    <td>{{ software.license_start|date:"m/d/Y"|default:"N/A" }}</td>
+                    <td>{{ software.license_end|date:"m/d/Y"|default:"N/A" }}</td>
+                    <td>{{ software.description|truncatewords:10|default:"No description" }}</td>
+                    <td>{% if software.is_active %}Active{% else %}Inactive{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <div class="no-data">
+                <p>No software entries found in the database.</p>
+            </div>
+        {% endif %}
+
+        <div class="actions">
+            <a href="{% url 'dashboard' %}">
+                <button type="button">Back to Dashboard</button>
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
