@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import path
 
+# Add this line to import your model
+from .models import UserDashboard
+
 #Start of program
 def rootPage(request):
     return redirect('login') #this is under urls.py in urlpatterns 
@@ -26,13 +29,22 @@ def user_login(request):
     
     return render(request, 'login.html')
 
-@login_required #decantor ensuring only logged in users can access this function
+@login_required
 def dashboard(request):
+    # Load the dashboard data for the logged-in user, or create it if it doesn't exist
+    dashboard_data, created = UserDashboard.objects.get_or_create(user=request.user)
+
+    # Optional: increment total_logins each time the dashboard is accessed
+    dashboard_data.total_logins += 1
+    dashboard_data.save()
+
     context = {
         'user': request.user,
         'username': request.user.username,
+        'dashboard_data': dashboard_data,
     }
     return render(request, 'dashboard.html', context)
+
 
 #log out user and send them back to login page
 def user_logout(request):
