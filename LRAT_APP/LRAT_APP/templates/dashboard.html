@@ -90,7 +90,12 @@
     </header>
 
     <main>
-        <h2>Welcome, {{ student_name }}</h2>
+        <h2>Welcome, {{ username }}</h2>
+
+<!-- Add the dashboard data display -->
+<p><strong>Total Logins:</strong> {{ dashboard_data.total_logins }}</p>
+<p><strong>Last Login Time:</strong> {{ dashboard_data.last_login_time }}</p>
+
 
         <table>
             <tr>
@@ -139,3 +144,4 @@
 
 </body>
 </html>
+
