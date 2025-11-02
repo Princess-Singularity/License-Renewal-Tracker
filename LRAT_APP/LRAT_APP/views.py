@@ -31,19 +31,20 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    # Load the dashboard data for the logged-in user, or create it if it doesn't exist
+    #Get or create the user's dashboard
     dashboard_data, created = UserDashboard.objects.get_or_create(user=request.user)
 
-    # Optional: increment total_logins each time the dashboard is accessed
+    #Increment total logins and save
     dashboard_data.total_logins += 1
     dashboard_data.save()
 
+    #Pass dashboard and its subscriptions to the template
     context = {
-        'user': request.user,
-        'username': request.user.username,
         'dashboard_data': dashboard_data,
+        'subscriptions': dashboard_data.subscriptions.all(),  # multiple subscriptions
     }
     return render(request, 'dashboard.html', context)
+
 
 
 #log out user and send them back to login page
