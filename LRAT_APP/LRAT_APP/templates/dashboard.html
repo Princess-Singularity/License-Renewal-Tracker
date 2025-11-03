@@ -98,39 +98,31 @@
 
 
         <table>
-            <tr>
-                <th>Software Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Cost</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <td>Adobe Creative Cloud</td>
-                <td>01/10/2025</td>
-                <td>01/10/2026</td>
-                <td>$70.00/year</td>
-                <td>Active</td>
-                <td><button>Renew</button></td>
-            </tr>
-            <tr>
-                <td>Adobe Framemaker</td>
-                <td>03/05/2025</td>
-                <td>11/05/2025</td>
-                <td>$169.39/year</td>
-                <td>Expiring Soon</td>
-                <td><button>Renew</button></td>
-            </tr>
-            <tr>
-                <td>AutoCAD</td>
-                <td>07/01/2025</td>
-                <td>07/01/2026</td>
-                <td>$500.00/year</td>
-                <td>Active</td>
-                <td><button>Renew</button></td>
-            </tr>
-        </table>
+    <tr>
+        <th>Software Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Cost</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for sub in subscriptions %}
+    <tr>
+        <td>{{ sub.name }}</td>
+        <td>{{ sub.start_date }}</td>
+        <td>{{ sub.end_date }}</td>
+        <td>${{ sub.cost }}</td>
+        <td>{{ sub.status }}</td>
+        <td><button>Renew</button></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No subscriptions yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+
 
         <div class="actions">
             <a href="{% url 'software_list' %}">
@@ -144,4 +136,5 @@
 
 </body>
 </html>
+
 
