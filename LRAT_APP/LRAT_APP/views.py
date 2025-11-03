@@ -4,9 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import path
+from DATABASE_APP.models import CustomUser, Subscription
 
-# Add this line to import your model
-from .models import UserDashboard
 
 #Start of program
 def rootPage(request):
@@ -31,17 +30,13 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    #Get or create the user's dashboard
-    dashboard_data, created = UserDashboard.objects.get_or_create(user=request.user)
+    # Get the user's subscriptions directly from the CustomUser model
+    user_subscriptions = Subscription.objects.filter(user=request.user)
 
-    #Increment total logins and save
-    dashboard_data.total_logins += 1
-    dashboard_data.save()
-
-    #Pass dashboard and its subscriptions to the template
+    # Pass user and subscriptions to the template
     context = {
-        'dashboard_data': dashboard_data,
-        'subscriptions': dashboard_data.subscriptions.all(),  # multiple subscriptions
+        'user': request.user,
+        'subscriptions': user_subscriptions,
     }
     return render(request, 'dashboard.html', context)
 
