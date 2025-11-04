@@ -1,16 +1,24 @@
 :root {
-    --mizzou-gold: #F1B82D;
-    --mizzou-black: #000000;
+    --mizzou-gold: #FDB719;           
+    --mizzou-black: #000000;          
     --mizzou-white: #FFFFFF;
-    --mizzou-light-gold: #F5C842;
-    --mizzou-dark-gold: #D4A017;
-    --mizzou-gray: #666666;
-    --mizzou-light-gray: #F8F8F8;
+
+    --mizzou-gold-tint-1: #FFD17D;    
+    --mizzou-gold-tint-2: #FFDFA5;    
+    --mizzou-gold-tint-3: #FFEDCF;    
+    
+    --mizzou-black-tint-1: #333333;   
+    --mizzou-black-tint-2: #989898;   
+    --mizzou-black-tint-3: #D4D4D4;   
+    
+    --mizzou-bluff: #453D3F;        
+    --mizzou-limestone: #D4D4D4;     
+    --mizzou-burr-oak: #7F4A0F;       
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-dark-gold) 100%);
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
     margin: 0;
     padding: 0;
     display: flex;
@@ -42,7 +50,7 @@ body {
 }
 
 .login-header p {
-    color: var(--mizzou-gray);
+    color: var(--mizzou-black-tint-2);
     margin: 0;
     font-size: 1rem;
 }
@@ -91,9 +99,9 @@ body {
 }
 
 .login-button:hover {
-    background: linear-gradient(135deg, var(--mizzou-light-gold) 0%, var(--mizzou-gold) 100%);
+    background: linear-gradient(135deg, var(--mizzou-gold-tint-1) 0%, var(--mizzou-gold) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(241, 184, 45, 0.3);
+    box-shadow: 0 4px 12px rgba(253, 183, 25, 0.3);
 }
 
 .error-messages {
@@ -130,93 +138,232 @@ body {
     text-align: center;
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 2px solid var(--mizzou-light-gray);
+    border-top: 2px solid var(--mizzou-black-tint-3);
 }
 
 .mizzou-branding small {
-    color: var(--mizzou-gray);
+    color: var(--mizzou-black-tint-2);
     font-size: 0.85rem;
 }
 
-/* Tried to move tommys stuff to css. it broke stuff. gave up. */
-.dashboard-page body,
+/*Page specific below  */
+/*main page container */
+.page-container,
+.dashboard-page,
 body.dashboard-page {
-    background-color: lightgrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--mizzou-gold-tint-3);
+    margin: 0;
+    padding: 0;
     display: block;
     align-items: unset;
     justify-content: unset;
-    min-height: unset;
+    min-height: 100vh;
 }
 
+.page-container header,
 .dashboard-page header {
-    background-color: gold;
-    color: black;
-    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    color: var(--mizzou-black);
+    padding: 2rem 2rem;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid var(--mizzou-black);
 }
 
+.page-container header h1,
+.dashboard-page header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-container header p,
+.dashboard-page header p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--mizzou-black-tint-1);
+    font-weight: 500;
+}
+
+/*Main area */
+.page-container main,
 .dashboard-page main {
-    margin: 40px auto;
-    width: 80%;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 6px grey;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 1200px;
+    background: var(--mizzou-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--mizzou-gold);
 }
 
+/*section headers */
+.page-container h2,
 .dashboard-page h2 {
-    color: black;
-    border-bottom: 2px solid gold;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    color: var(--mizzou-black);
+    border-bottom: 3px solid var(--mizzou-gold);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
+/* table styling*/
+.page-container table,
 .dashboard-page table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-page th,
-.dashboard-page td {
-    border: 1px solid black;
-    padding: 12px;
-    text-align: center;
-}
-
+.page-container th,
 .dashboard-page th {
-    background-color: gold;
-    color: black;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    color: var(--mizzou-black);
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--mizzou-black-tint-1);
 }
 
+.page-container td,
+.dashboard-page td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--mizzou-black-tint-3);
+    color: var(--mizzou-black);
+}
+
+.page-container tr:nth-child(even),
 .dashboard-page tr:nth-child(even) {
-    background-color: white;
+    background-color: var(--mizzou-gold-tint-3);
 }
 
+.page-container tr:nth-child(odd),
 .dashboard-page tr:nth-child(odd) {
-    background-color: lightgoldenrodyellow;
+    background-color: var(--mizzou-white);
 }
 
+.page-container tr:hover,
+.dashboard-page tr:hover {
+    background-color: var(--mizzou-gold-tint-2);
+    transition: background-color 0.3s ease;
+}
+
+/*buttons*/
+.page-container .actions,
 .dashboard-page .actions {
-    margin-top: 20px;
+    margin-top: 2rem;
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
+.page-container button,
 .dashboard-page button,
-.dashboard-page .actions button {
-    background-color: black;
-    color: gold;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
+.page-container .actions button,
+.dashboard-page .actions button,
+.page-container .btn,
+.dashboard-page .btn {
+    background: linear-gradient(135deg, var(--mizzou-black) 0%, var(--mizzou-black-tint-1) 100%);
+    color: var(--mizzou-gold);
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--mizzou-gold);
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 0.95rem;
 }
 
+.page-container button:hover,
 .dashboard-page button:hover,
-.dashboard-page .actions button:hover {
-    background-color: grey;
+.page-container .actions button:hover,
+.dashboard-page .actions button:hover,
+.page-container .btn:hover,
+.dashboard-page .btn:hover {
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    color: var(--mizzou-black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 183, 25, 0.3);
+}
+
+/*links*/
+.page-container .nav-links,
+.dashboard-page .nav-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.page-container .nav-link,
+.dashboard-page .nav-link {
+    background: var(--mizzou-white);
+    color: var(--mizzou-black);
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--mizzou-gold);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-container .nav-link:hover,
+.dashboard-page .nav-link:hover,
+.page-container .nav-link.active,
+.dashboard-page .nav-link.active {
+    background: var(--mizzou-gold);
+    color: var(--mizzou-black);
+    transform: translateY(-2px);
+}
+
+/*alert/message boxes*/
+.page-container .alert,
+.dashboard-page .alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid;
+}
+
+.page-container .alert-success,
+.dashboard-page .alert-success {
+    background-color: var(--mizzou-gold-tint-3);
+    border-color: var(--mizzou-gold);
+    color: var(--mizzou-black);
+}
+
+.page-container .alert-error,
+.dashboard-page .alert-error {
+    background-color: #f8d7da;
+    border-color: #721c24;
+    color: #721c24;
+}
+
+/*no data message*/
+.page-container .no-data,
+.dashboard-page .no-data {
+    text-align: center;
+    padding: 3rem;
+    color: var(--mizzou-black-tint-2);
+    font-size: 1.1rem;
+    background: var(--mizzou-gold-tint-3);
+    border-radius: 8px;
+    border: 2px dashed var(--mizzou-gold);
 }
