@@ -18,31 +18,36 @@
         <h2>Welcome, {{ user.username }}!</h2>
 
         <table>
-    <tr>
-        <th>Software Name</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Cost</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
+            <tr>
+                <th>Software Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Cost</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
 
-    {% for sub in subscriptions %}
-    <tr>
-        <td>{{ sub.name }}</td>
-        <td>{{ sub.start_date }}</td>
-        <td>{{ sub.end_date }}</td>
-        <td>${{ sub.cost }}</td>
-        <td>{{ sub.status }}</td>
-        <td><button>Renew</button></td>
-    </tr>
-    {% empty %}
-    <tr>
-        <td colspan="6">No subscriptions yet.</td>
-    </tr>
-    {% endfor %}
-</table>
-
+            {% for sub in subscriptions %}
+            <tr>
+                <td>{{ sub.software.subscription_name }}</td>
+                <td>{{ sub.date_subscribed|date:"M d, Y" }}</td>
+                <td>{{ sub.date_expired|default:"N/A" }}</td>
+                <td>${{ sub.total_cost }}</td>
+                <td>
+                    {% if sub.currently_used %}
+                        Active
+                    {% else %}
+                        Expired
+                    {% endif %}
+                </td>
+                <td><button>Renew</button></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No subscriptions yet.</td>
+            </tr>
+            {% endfor %}
+        </table>
 
         <div class="actions">
             <a href="{% url 'software_list' %}">
@@ -56,4 +61,3 @@
 
 </body>
 </html>
-
