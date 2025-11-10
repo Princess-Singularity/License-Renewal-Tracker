@@ -16,6 +16,25 @@
 
     <main>
         <h2>Welcome, {{ user.username }}!</h2>
+        <form method="get" style="margin-bottom: 20px;">
+    <label for="sort"><strong>Sort By:</strong></label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="software__subscription_name" {% if current_sort == 'software__subscription_name' and direction == 'asc' %}selected{% endif %}>Software Name ↑</option>
+        <option value="-software__subscription_name" {% if current_sort == 'software__subscription_name' and direction == 'desc' %}selected{% endif %}>Software Name ↓</option>
+
+        <option value="date_subscribed" {% if current_sort == 'date_subscribed' and direction == 'asc' %}selected{% endif %}>Start Date ↑</option>
+        <option value="-date_subscribed" {% if current_sort == 'date_subscribed' and direction == 'desc' %}selected{% endif %}>Start Date ↓</option>
+
+        <option value="date_expired" {% if current_sort == 'date_expired' and direction == 'asc' %}selected{% endif %}>End Date ↑</option>
+        <option value="-date_expired" {% if current_sort == 'date_expired' and direction == 'desc' %}selected{% endif %}>End Date ↓</option>
+
+        <option value="total_cost" {% if current_sort == 'total_cost' and direction == 'asc' %}selected{% endif %}>Cost ↑</option>
+        <option value="-total_cost" {% if current_sort == 'total_cost' and direction == 'desc' %}selected{% endif %}>Cost ↓</option>
+
+        <option value="currently_used" {% if current_sort == 'currently_used' and direction == 'asc' %}selected{% endif %}>Status ↑ (Expired → Active)</option>
+        <option value="-currently_used" {% if current_sort == 'currently_used' and direction == 'desc' %}selected{% endif %}>Status ↓ (Active → Expired)</option>
+    </select>
+</form>
 
         <table>
             <tr>
@@ -61,3 +80,4 @@
 
 </body>
 </html>
+
