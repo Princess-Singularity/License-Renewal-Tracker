@@ -52,7 +52,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
         class Meta:
             model = Subscription
-            exclude = ("total_cost",)
+            exclude = ("total_cost", "currently_used", "date_expired", )
         
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -83,10 +83,10 @@ class SubscriptionAdmin(admin.ModelAdmin):
         return qs.select_related("user", "software", "option")
     
     def save_model(self, request, obj, form, change):
-        if form.cleaned_data.get("renew"):
+        if not change:
             obj.currently_used = True
-        else:
-            obj.currently_used = False
+            obj.date_expired = obj.software.license_end or obj.date_expired
+            obj.renew = False
         super().save_model(request, obj, form, change)
 
     @admin.display(description="Total Cost", ordering="total_cost")
