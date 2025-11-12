@@ -1,0 +1,87 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}">
+    <style>
+        body.login {
+            background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+        }
+        
+        .login #container {
+            background: var(--mizzou-white) !important;
+            border: 3px solid var(--mizzou-gold) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        .login #header {
+            background: transparent !important;
+            border: none !important;
+            text-align: center !important;
+            padding: 30px 20px 20px 20px !important;
+        }
+        
+        .login #header h1 {
+            color: var(--mizzou-black) !important;
+            font-size: 2em !important;
+            font-weight: bold !important;
+            margin: 0 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+        }
+        
+        .login #header h1 a {
+            color: var(--mizzou-black) !important;
+        }
+        
+        .login form {
+            background: transparent !important;
+            border: none !important;
+            padding: 20px !important;
+        }
+        
+        .login .form-row label {
+            color: var(--mizzou-black) !important;
+            font-weight: bold !important;
+        }
+        
+        .login .form-row input[type="text"],
+        .login .form-row input[type="password"] {
+            border: 2px solid #ddd !important;
+            border-radius: 6px !important;
+            padding: 10px !important;
+            font-size: 1em !important;
+        }
+        
+        .login .form-row input[type="text"]:focus,
+        .login .form-row input[type="password"]:focus {
+            border-color: var(--mizzou-gold) !important;
+            box-shadow: 0 0 0 3px rgba(253, 183, 25, 0.2) !important;
+        }
+        
+        .login .submit-row input[type="submit"] {
+            background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+            color: var(--mizzou-black) !important;
+            border: 2px solid var(--mizzou-black) !important;
+            border-radius: 8px !important;
+            padding: 12px 24px !important;
+            font-weight: bold !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            width: 100% !important;
+            margin-top: 15px !important;
+        }
+        
+        .login .submit-row input[type="submit"]:hover {
+            background: linear-gradient(135deg, var(--mizzou-gold-tint-1) 0%, var(--mizzou-gold) 100%) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">LRAT Admin</a>
+</h1>
+{% endblock %}

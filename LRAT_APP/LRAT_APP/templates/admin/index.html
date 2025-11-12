@@ -1,0 +1,12 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+<div style="background: var(--mizzou-gold-tint-3); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid var(--mizzou-gold);">
+    <h2 style="color: var(--mizzou-black); margin-top: 0;">
+        Welcome to LRAT Administration
+    </h2>
+</div>
+
+{{ block.super }}
+{% endblock %}
