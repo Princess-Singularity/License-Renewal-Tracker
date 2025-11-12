@@ -1,6 +1,13 @@
 from decimal import Decimal
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
+
+class DatabaseGroup(Group):
+    class Meta:
+        proxy = True
+        app_label = "DATABASE_APP"
+        verbose_name = "Group"
+        verbose_name_plural = "Groups"
 
 class CustomUser(AbstractUser):
     expected_grad_year = models.IntegerField(null=True, blank=True)

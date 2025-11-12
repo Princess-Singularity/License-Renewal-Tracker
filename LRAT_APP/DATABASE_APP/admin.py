@@ -1,8 +1,57 @@
 from django.contrib import admin
 from django import forms
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Software, SoftwareOption, Subscription
+from django.contrib.auth.models import Group
+from .models import CustomUser, Software, SoftwareOption, Subscription, DatabaseGroup
 # Register your models here.
+
+admin.site.unregister(Group)
+
+class GroupUserInline(admin.TabularInline):
+    model = CustomUser.groups.through
+    fk_name = "group"
+    ordering = ("customuser__username",)
+    verbose_name_plural = "Users"
+    fields = ("username_display", "first_name_display", "last_name_display", "user_email")
+    readonly_fields = ("username_display", "first_name_display", "last_name_display", "user_email")
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    @admin.display(description="Username")
+    def username_display(self, instance):
+        return instance.customuser.username
+
+    @admin.display(description="First Name")
+    def first_name_display(self, instance):
+        return instance.customuser.first_name
+
+    @admin.display(description="Last Name")
+    def last_name_display(self, instance):
+        return instance.customuser.last_name
+    
+    @admin.display(description="Email")
+    def user_email(self, obj):
+        return obj.customuser.email
+    
+@admin.register(DatabaseGroup)
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ("name", "user_count")
+    ordering = ("name",)
+    inlines = (GroupUserInline,)
+    search_fields = ("name",)
+
+    @admin.display(description="Users")
+    def user_count(self, obj):
+        return obj.user_set.count()
+
+def _customuser_group_str(self):
+    user = getattr(self, "customuser", None)
+    if user:
+        return ""
+    return ""
+
+CustomUser.groups.through.__str__ = _customuser_group_str
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -103,4 +152,3 @@ class SubscriptionAdmin(admin.ModelAdmin):
     @admin.display(description="Date Expired")
     def date_expired_display(self, obj):
         return obj.date_expired.strftime("%b %d, %Y") 
-    
