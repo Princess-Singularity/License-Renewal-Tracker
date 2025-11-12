@@ -12,6 +12,8 @@ class Software(models.Model):
     term = models.IntegerField()
     license_start = models.DateField(null=True, blank=True)
     license_end = models.DateField(null=True, blank=True)
+    help_page = models.URLField(max_length=300, blank=True, null=True)
+    uninstall_instructions = models.URLField(max_length=300, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -19,7 +21,6 @@ class Software(models.Model):
 
     def __str__(self):
         return self.subscription_name
-
 
 class SoftwareOption(models.Model):
     software = models.ForeignKey(
