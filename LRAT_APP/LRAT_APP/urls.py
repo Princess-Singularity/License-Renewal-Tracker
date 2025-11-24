@@ -13,6 +13,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('logout/', views.user_logout, name='logout'),
     path('software/', db_views.software_list, name='software_list'),
+    path('license-info/<int:software_id>/', views.license_info, name='license_info'),
+
 ]
 
 # use for development to load static files without restarting
