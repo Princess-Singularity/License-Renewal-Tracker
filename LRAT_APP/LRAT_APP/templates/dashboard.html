@@ -59,7 +59,11 @@
                         Expired
                     {% endif %}
                 </td>
-                <td><button>Renew</button></td>
+               <td>
+    <a href="{% url 'license_info' sub.software.id %}">
+        <button type="button">Info</button>
+    </a>
+    </td>
             </tr>
             {% empty %}
             <tr>
@@ -80,4 +84,5 @@
 
 </body>
 </html>
+
 
