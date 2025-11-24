@@ -59,6 +59,16 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
+@login_required
+def license_info(request, software_id):
+    from DATABASE_APP.models import Software   
+    software = Software.objects.get(id=software_id)
+
+    context = {
+        'software': software
+    }
+    return render(request, 'license_info.html', context)
+
 #log out user and send them back to login page
 def user_logout(request):
     logout(request)
