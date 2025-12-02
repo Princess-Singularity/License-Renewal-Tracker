@@ -62,7 +62,7 @@ def dashboard(request):
 @login_required
 def license_info(request, software_id):
     from DATABASE_APP.models import Software   
-    software = Software.objects.get(id=software_id)
+    software = Software.objects.get(software_id=software_id)
 
     context = {
         'software': software
