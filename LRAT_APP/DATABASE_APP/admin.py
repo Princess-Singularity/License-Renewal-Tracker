@@ -2,7 +2,13 @@ from django.contrib import admin
 from django import forms
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
+from django.http import HttpResponse
+from django.db.models import Count, Sum, Q
+from decimal import Decimal
 from .models import CustomUser, Software, SoftwareOption, Subscription, DatabaseGroup
+import openpyxl
+from openpyxl.styles import Font, Alignment, PatternFill
+from datetime import datetime
 # Register your models here.
 
 admin.site.unregister(Group)
@@ -88,6 +94,109 @@ class SoftwareAdmin(admin.ModelAdmin):
             return "1 month"
         return f"{obj.term} months"
 
+def export_subscription_report(modeladmin, request, queryset):
+    
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Subscription Report"
+    
+    #header style
+    header_fill = PatternFill(start_color="000000", end_color="000000", fill_type="solid")
+    header_font = Font(bold=True, color="FFFFFF")
+    header_alignment = Alignment(horizontal="center", vertical="center")
+    
+    #column headers
+    headers = [
+        "Software Name",
+        "Currently Subscribed Users",
+        "Users Planning to Renew",
+        "Current Quarter Total Cost",
+        "Next Quarter Estimated Cost"
+    ]
+    
+    for col_num, header in enumerate(headers, 1):
+        cell = ws.cell(row=1, column=col_num, value=header)
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = header_alignment
+    
+    #get all software
+    software_list = Software.objects.all().order_by('subscription_name')
+    
+    row_num = 2
+    total_current_cost = Decimal('0.00')
+    total_next_quarter_cost = Decimal('0.00')
+
+    #get count of currently subscribed users
+    for software in software_list:
+        current_subs = Subscription.objects.filter(
+            software=software,
+            currently_used=True
+        )
+        current_users_count = current_subs.count()
+        
+        #get count of users planning to renew
+        renew_count = current_subs.filter(renew=True).count()
+        
+        #calculate current quarter total cost
+        current_cost = current_subs.aggregate(
+            total=Sum('total_cost')
+        )['total'] or Decimal('0.00')
+        
+        # calculate next quarter estimated cost via renewals
+        next_quarter_cost = current_subs.filter(renew=True).aggregate(
+            total=Sum('total_cost')
+        )['total'] or Decimal('0.00')
+        
+        ws.cell(row=row_num, column=1, value=software.subscription_name)
+        ws.cell(row=row_num, column=2, value=current_users_count)
+        ws.cell(row=row_num, column=3, value=renew_count)
+        ws.cell(row=row_num, column=4, value=float(current_cost))
+        ws.cell(row=row_num, column=5, value=float(next_quarter_cost))
+        
+        ws.cell(row=row_num, column=4).number_format = '"$"#,##0.00'
+        ws.cell(row=row_num, column=5).number_format = '"$"#,##0.00'
+        
+        total_current_cost += current_cost
+        total_next_quarter_cost += next_quarter_cost
+        
+        row_num += 1
+    
+    # totals
+    totals_row = row_num + 1
+    ws.cell(row=totals_row, column=1, value="TOTAL")
+    ws.cell(row=totals_row, column=1).font = Font(bold=True)
+    ws.cell(row=totals_row, column=4, value=float(total_current_cost))
+    ws.cell(row=totals_row, column=4).number_format = '"$"#,##0.00'
+    ws.cell(row=totals_row, column=4).font = Font(bold=True)
+    ws.cell(row=totals_row, column=5, value=float(total_next_quarter_cost))
+    ws.cell(row=totals_row, column=5).number_format = '"$"#,##0.00'
+    ws.cell(row=totals_row, column=5).font = Font(bold=True)
+    
+    # auto adjust column width (https://stackoverflow.com/questions/39529662/python-automatically-adjust-width-of-an-excel-files-columns)
+    for column in ws.columns:
+        max_length = 0
+        column_letter = column[0].column_letter
+        for cell in column:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                pass
+        adjusted_width = min(max_length + 2, 50)
+        ws.column_dimensions[column_letter].width = adjusted_width
+    
+    #create HTTP response to trigger file download
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    filename = f'subscription_report_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xlsx'
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    
+    wb.save(response)
+    return response
+
+export_subscription_report.short_description = "Export subscription report to Excel"
+
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
     class SubscriptionForm(forms.ModelForm):
@@ -126,6 +235,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
     list_filter = ("currently_used", "renew", "date_subscribed", "date_expired")
     ordering = ("user",)
     form = SubscriptionForm
+    actions = [export_subscription_report]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
