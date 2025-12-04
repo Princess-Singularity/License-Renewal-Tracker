@@ -1,5 +1,18 @@
 # License-Renewal-Tracker
 ---
+
+## Temp Account
+
+### Admin
+Username: superdylan
+
+Password: qwert
+
+### Standard
+Username: pmorgan
+
+Password: P@ssword01
+
 ## University of Missouri Senior Capstone Project
 
 A python app that imports information from an sql database to be parsed from a local mysql database for parsing and manipulation. The app will use Django to manage front end and backend logic so that data may be presented in a easy to comprehend manner to
