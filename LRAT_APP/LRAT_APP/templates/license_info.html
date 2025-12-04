@@ -16,19 +16,38 @@
 
 <main>
     <p><strong>Software Name:</strong> {{ software.subscription_name }}</p>
-    <p><strong>License Type:</strong> {{ software.license_type }}</p>
     <p><strong>Cost:</strong> ${{ software.cost }}</p>
-    <p><strong>Expiration Date:</strong> {{ software.expiration_date|date:"M d, Y" }}</p>
+    <p><strong>Term (months):</strong> {{ software.term }}</p>
 
-    {% if software.help_url %}
+    <p><strong>License Start:</strong>
+        {% if software.license_start %}
+            {{ software.license_start|date:"M d, Y" }}
+        {% else %}
+            N/A
+        {% endif %}
+    </p>
+
+    <p><strong>Expiration Date:</strong>
+        {% if software.license_end %}
+            {{ software.license_end|date:"M d, Y" }}
+        {% else %}
+            N/A
+        {% endif %}
+    </p>
+
+    {% if software.description %}
+        <p><strong>Description:</strong> {{ software.description }}</p>
+    {% endif %}
+
+    {% if software.help_page %}
         <p><strong>Help Page:</strong>
-            <a href="{{ software.help_url }}" target="_blank">View Help</a>
+            <a href="{{ software.help_page }}" target="_blank">View Help</a>
         </p>
     {% endif %}
 
-    {% if software.uninstall_url %}
+    {% if software.uninstall_instructions %}
         <p><strong>Uninstall Instructions:</strong>
-            <a href="{{ software.uninstall_url }}" target="_blank">View Uninstall Guide</a>
+            <a href="{{ software.uninstall_instructions }}" target="_blank">View Uninstall Guide</a>
         </p>
     {% endif %}
 
