@@ -5,10 +5,12 @@
 
 ### Admin
 Username: superdylan
+
 Password: qwert
 
 ### Standard
 Username: pmorgan
+
 Password: P@ssword01
 
 ## University of Missouri Senior Capstone Project
