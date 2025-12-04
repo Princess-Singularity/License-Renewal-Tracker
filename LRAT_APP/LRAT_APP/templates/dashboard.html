@@ -12,6 +12,18 @@
     <header>
         <h1>License Renewal Application Tracker (LRAT)</h1>
         <p>Student Dashboard</p>
+        <nav class="header-nav">
+            <div class="nav-left">
+                <a href="{% url 'software_list' %}">
+                    <button type="button">View All Software</button>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="{% url 'logout' %}">
+                    <button type="button">Logout</button>
+                </a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -71,15 +83,6 @@
             </tr>
             {% endfor %}
         </table>
-
-        <div class="actions">
-            <a href="{% url 'software_list' %}">
-                <button type="button">View All Software</button>
-            </a>
-            <a href="{% url 'logout' %}">
-                <button type="button">Logout</button>
-            </a>
-        </div>
     </main>
 
 </body>

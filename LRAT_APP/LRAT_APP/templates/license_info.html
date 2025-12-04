@@ -7,56 +7,68 @@
     <title>{{ software.subscription_name }} - Info</title>
     <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
 </head>
-<body class="info-page">
+<body class="dashboard-page">
 
-<header>
-    <h1>{{ software.subscription_name }}</h1>
-    <p>License Information</p>
-</header>
+    <header>
+        <h1>License Renewal Application Tracker (LRAT)</h1>
+        <p>License Information</p>
+        <nav class="header-nav">
+            <div class="nav-left">
+                <a href="{% url 'dashboard' %}">
+                    <button type="button">Back to Dashboard</button>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="{% url 'logout' %}">
+                    <button type="button">Logout</button>
+                </a>
+            </div>
+        </nav>
+    </header>
 
-<main>
-    <p><strong>Software Name:</strong> {{ software.subscription_name }}</p>
-    <p><strong>Cost:</strong> ${{ software.cost }}</p>
-    <p><strong>Term (months):</strong> {{ software.term }}</p>
 
-    <p><strong>License Start:</strong>
-        {% if software.license_start %}
-            {{ software.license_start|date:"M d, Y" }}
-        {% else %}
-            N/A
-        {% endif %}
-    </p>
+    
+    <main>
+        <h2>{{ software.subscription_name }}</h2>
+        
+        <div class="info-section">
+            <p><strong>Software Name:</strong> {{ software.subscription_name }}</p>
+            <p><strong>Cost:</strong> ${{ software.cost }}</p>
+            <p><strong>Term (months):</strong> {{ software.term }}</p>
 
-    <p><strong>Expiration Date:</strong>
-        {% if software.license_end %}
-            {{ software.license_end|date:"M d, Y" }}
-        {% else %}
-            N/A
-        {% endif %}
-    </p>
+            <p><strong>License Start:</strong>
+                {% if software.license_start %}
+                    {{ software.license_start|date:"M d, Y" }}
+                {% else %}
+                    N/A
+                {% endif %}
+            </p>
 
-    {% if software.description %}
-        <p><strong>Description:</strong> {{ software.description }}</p>
-    {% endif %}
+            <p><strong>Expiration Date:</strong>
+                {% if software.license_end %}
+                    {{ software.license_end|date:"M d, Y" }}
+                {% else %}
+                    N/A
+                {% endif %}
+            </p>
 
-    {% if software.help_page %}
-        <p><strong>Help Page:</strong>
-            <a href="{{ software.help_page }}" target="_blank">View Help</a>
-        </p>
-    {% endif %}
+            {% if software.description %}
+                <p><strong>Description:</strong> {{ software.description }}</p>
+            {% endif %}
 
-    {% if software.uninstall_instructions %}
-        <p><strong>Uninstall Instructions:</strong>
-            <a href="{{ software.uninstall_instructions }}" target="_blank">View Uninstall Guide</a>
-        </p>
-    {% endif %}
+            {% if software.help_page %}
+                <p><strong>Help Page:</strong>
+                    <a href="{{ software.help_page }}" target="_blank">View Help</a>
+                </p>
+            {% endif %}
 
-    <div class="actions">
-        <a href="{% url 'dashboard' %}">
-            <button type="button">Back to Dashboard</button>
-        </a>
-    </div>
-</main>
+            {% if software.uninstall_instructions %}
+                <p><strong>Uninstall Instructions:</strong>
+                    <a href="{{ software.uninstall_instructions }}" target="_blank">View Uninstall Guide</a>
+                </p>
+            {% endif %}
+        </div>
+    </main>
 
 </body>
 </html>

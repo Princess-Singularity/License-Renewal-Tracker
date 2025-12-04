@@ -12,6 +12,18 @@
     <header>
         <h1>License Renewal Application Tracker (LRAT)</h1>
         <p>Available Software</p>
+        <nav class="header-nav">
+            <div class="nav-left">
+                <a href="{% url 'dashboard' %}">
+                    <button type="button">Back to Dashboard</button>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="{% url 'logout' %}">
+                    <button type="button">Logout</button>
+                </a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -45,12 +57,6 @@
                 <p>No software entries found in the database.</p>
             </div>
         {% endif %}
-
-        <div class="actions">
-            <a href="{% url 'dashboard' %}">
-                <button type="button">Back to Dashboard</button>
-            </a>
-        </div>
     </main>
 
 </body>

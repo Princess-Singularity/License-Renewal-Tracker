@@ -171,6 +171,44 @@ body.dashboard-page {
     border-bottom: 3px solid var(--mizzou-black);
 }
 
+.header-nav {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-nav a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header-nav button {
+    padding: 0.7rem 1.5rem;
+    background-color: var(--mizzou-black);
+    color: var(--mizzou-gold);
+    border: 2px solid var(--mizzou-black);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-nav button:hover {
+    background-color: var(--mizzou-white);
+    color: var(--mizzou-black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .page-container header h1,
 .dashboard-page header h1 {
     margin: 0 0 0.5rem 0;

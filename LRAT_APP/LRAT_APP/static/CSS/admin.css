@@ -1,0 +1,363 @@
+:root {
+    --mizzou-gold: #FDB719;           
+    --mizzou-black: #000000;          
+    --mizzou-white: #FFFFFF;
+
+    --mizzou-gold-tint-1: #FFD17D;    
+    --mizzou-gold-tint-2: #FFDFA5;    
+    --mizzou-gold-tint-3: #FFEDCF;    
+    
+    --mizzou-black-tint-1: #333333;   
+    --mizzou-black-tint-2: #989898;   
+    --mizzou-black-tint-3: #D4D4D4;   
+    
+    --mizzou-bluff: #453D3F;        
+    --mizzou-limestone: #D4D4D4;     
+    --mizzou-burr-oak: #7F4A0F;       
+}
+
+#header {
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+    border-bottom: 3px solid var(--mizzou-black) !important;
+    color: var(--mizzou-black) !important;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: var(--mizzou-black) !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+#branding h1 a:hover {
+    color: var(--mizzou-black-tint-1) !important;
+}
+
+/*header tools*/
+#user-tools a {
+    color: var(--mizzou-black) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid transparent !important;
+    transition: border-color 0.3s ease !important;
+}
+
+#user-tools a:hover {
+    color: var(--mizzou-black-tint-1) !important;
+    border-bottom: 2px solid var(--mizzou-black) !important;
+}
+
+div.breadcrumbs {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+}
+
+div.breadcrumbs a {
+    color: var(--mizzou-gold) !important;
+    font-weight: 600 !important;
+}
+
+div.breadcrumbs a:hover {
+    color: var(--mizzou-gold-tint-1) !important;
+}
+
+#content {
+    background: var(--mizzou-white) !important;
+}
+
+/*module head*/
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    font-weight: bold !important;
+}
+
+/*yable head*/
+#result_list thead th {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    border-bottom: 2px solid var(--mizzou-gold) !important;
+}
+
+#result_list thead th a:link,
+#result_list thead th a:visited {
+    color: var(--mizzou-gold) !important;
+}
+
+#result_list thead th a:hover {
+    color: var(--mizzou-gold-tint-1) !important;
+}
+
+/*table rows*/
+#result_list tbody tr:nth-child(odd) {
+    background: var(--mizzou-gold-tint-3) !important;
+}
+
+#result_list tbody tr:nth-child(even) {
+    background: var(--mizzou-white) !important;
+}
+
+#result_list tbody tr:hover {
+    background: var(--mizzou-gold-tint-2) !important;
+}
+
+a:link,
+a:visited {
+    color: var(--mizzou-black) !important;
+    font-weight: 600 !important;
+}
+
+a:hover {
+    color: var(--mizzou-gold) !important;
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+button {
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+    color: var(--mizzou-black) !important;
+    border: 2px solid var(--mizzou-black) !important;
+    border-radius: 6px !important;
+    padding: 0.7rem 1.5rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    vertical-align: middle !important;
+    line-height: normal !important;
+    display: inline-block !important;
+    text-align: center !important;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+button:hover {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.actions button,
+.actions select {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    border: 2px solid var(--mizzou-black) !important;
+}
+
+.actions button:hover {
+    background: var(--mizzou-gold) !important;
+    color: var(--mizzou-black) !important;
+}
+
+.deletelink,
+.deletelink-box a {
+    background: #8B0000 !important;
+    color: var(--mizzou-white) !important;
+    border: 2px solid #8B0000 !important;
+}
+
+.deletelink:hover,
+.deletelink-box a:hover {
+    background: #A00000 !important;
+}
+
+
+
+/*SIDEBAR*/
+#content-related h3 {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+}
+
+#content-related a {
+    color: var(--mizzou-black) !important;
+}
+
+/*for dashboard*/
+.module {
+    border: 2px solid var(--mizzou-black-tint-3) !important;
+    border-radius: 8px !important;
+}
+
+#result_list tbody tr.selected {
+    background: var(--mizzou-gold-tint-1) !important;
+}
+
+/*Sidebar filters*/
+#changelist-filter {
+    background: var(--mizzou-gold-tint-3) !important;
+    border-left: 3px solid var(--mizzou-black) !important;
+}
+
+#changelist-filter h2,
+#changelist-filter h3 {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    padding: 10px 15px !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: bold !important;
+}
+
+#changelist-filter li.selected a {
+    color: var(--mizzou-gold) !important;
+    background: var(--mizzou-black) !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+}
+
+#changelist-filter a:hover {
+    background: var(--mizzou-gold-tint-2) !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+}
+
+/*search box*/
+#changelist-search input[type="text"] {
+    border: 2px solid var(--mizzou-black-tint-3) !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+}
+
+#changelist-search input[type="text"]:focus {
+    border-color: var(--mizzou-gold) !important;
+    box-shadow: 0 0 0 3px rgba(253, 183, 25, 0.2) !important;
+    outline: none !important;
+}
+
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="email"],
+.form-row input[type="url"],
+.form-row input[type="number"],
+.form-row select,
+.form-row textarea {
+    border: 2px solid var(--mizzou-black-tint-3) !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: var(--mizzou-gold) !important;
+    box-shadow: 0 0 0 3px rgba(253, 183, 25, 0.2) !important;
+    outline: none !important;
+}
+
+.module fieldset {
+    border: 2px solid var(--mizzou-black-tint-3) !important;
+    border-radius: 8px !important;
+}
+
+.object-tools {
+    background: transparent !important;
+}
+
+.object-tools li a {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+}
+
+.object-tools li a:hover {
+    background: var(--mizzou-gold) !important;
+    color: var(--mizzou-black) !important;
+}
+
+.paginator a:link,
+.paginator a:visited {
+    background: var(--mizzou-gold-tint-2) !important;
+    color: var(--mizzou-black) !important;
+    border: 1px solid var(--mizzou-black-tint-3) !important;
+    border-radius: 4px !important;
+    padding: 5px 10px !important;
+}
+
+.paginator a:hover {
+    background: var(--mizzou-gold) !important;
+    color: var(--mizzou-black) !important;
+}
+
+.paginator .this-page {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+    border: 1px solid var(--mizzou-black) !important;
+    border-radius: 4px !important;
+    padding: 5px 10px !important;
+    font-weight: bold !important;
+}
+
+.messagelist li {
+    background: var(--mizzou-gold-tint-2) !important;
+    color: var(--mizzou-black) !important;
+    border-left: 4px solid var(--mizzou-gold) !important;
+}
+
+.messagelist li.success {
+    border-left-color: #28a745 !important;
+    background: #d4edda !important;
+}
+
+.messagelist li.warning {
+    border-left-color: #ffc107 !important;
+    background: #fff3cd !important;
+}
+
+.messagelist li.error {
+    border-left-color: #dc3545 !important;
+    background: #f8d7da !important;
+}
+
+#content-main .module h2 a {
+    color: var(--mizzou-gold) !important;
+}
+
+#content-main .module h2 a:hover {
+    color: var(--mizzou-gold-tint-1) !important;
+}
+
+/*admin login page*/
+.login #header {
+    height: auto !important;
+    padding: 2rem !important;
+}
+
+.login #content {
+    padding: 20px 20px 0 !important;
+}
+
+.login .form-row label {
+    color: var(--mizzou-black) !important;
+    font-weight: 600 !important;
+}
+
+.calendarbox h2 {
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
+}
+
+.calendar td a:hover,
+.calendar td a:focus {
+    background: var(--mizzou-gold) !important;
+    color: var(--mizzou-black) !important;
+}
+
+.related-widget-wrapper-link {
+    background: var(--mizzou-gold) !important;
+}
+
+.help,
+p.help,
+form .form-row p.help {
+    color: var(--mizzou-black-tint-2) !important;
+}
