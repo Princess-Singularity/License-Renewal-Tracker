@@ -8,10 +8,33 @@ Username: superdylan
 
 Password: qwert
 
-### Standard
-Username: pmorgan
+Username: admin
 
 Password: P@ssword01
+### Standard
+Use **P@ssword01** for all users below
+
+Username: pmorgan
+
+Username: dduncan196
+
+Username: yzuniga311
+
+Username: nsilver278
+
+Username: nsilver230
+
+Username: edoyle415
+
+Username: yzuniga391
+
+Username: qadams80
+
+Username: aroberts64
+
+Username: gyoung85
+
+Username: ibrown273
 
 ## University of Missouri Senior Capstone Project
 
