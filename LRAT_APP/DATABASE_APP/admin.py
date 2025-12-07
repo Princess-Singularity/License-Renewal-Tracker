@@ -59,12 +59,24 @@ def _customuser_group_str(self):
 
 CustomUser.groups.through.__str__ = _customuser_group_str
 
+class SubscriptionInline(admin.TabularInline):
+    model = Subscription
+    extra = 0
+    fields = ("software", "option", "currently_used", "renew", "total_cost")
+    readonly_fields = ("software", "option", "total_cost")
+    can_delete = False
+    show_change_link = True
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("is_active", "group_names",)
     search_fields = ("username", "email", "first_name", "last_name")
     list_filter = ("groups", "is_staff", "is_superuser", "is_active")
     ordering = ("last_name",)
+    inlines = (SubscriptionInline,)
 
     @admin.display(description="Groups")
     def group_names(self, obj):
