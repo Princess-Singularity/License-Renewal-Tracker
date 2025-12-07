@@ -12,7 +12,7 @@ Username: admin
 
 Password: P@ssword01
 ### Standard
-Use **P@ssword01** for all users below
+Use **P@ssword01** for all users' passwords below
 
 Username: pmorgan
 
