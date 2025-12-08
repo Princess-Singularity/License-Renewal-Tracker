@@ -5,29 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LRAT - Student Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}?v=2">
 </head>
 <body class="dashboard-page">
 
     <header>
-        <h1>License Renewal Application Tracker (LRAT)</h1>
-        <p>Student Dashboard</p>
         <nav class="header-nav">
             <div class="nav-left">
-                <a href="{% url 'software_list' %}">
-                    <button type="button">View All Software</button>
-                </a>
+                <a href="{% url 'dashboard' %}" class="brand">LRAT</a>
+                <span class="greeting">Welcome, {{ user.first_name }} {{ user.last_name }}!</span>
             </div>
             <div class="nav-right">
+                
+                <a href="{% url 'dashboard' %}">
+                    <button type="button">Dashboard</button>
+                </a>
+                <a href="{% url 'software_list' %}">
+                    <button type="button">All Software</button>
+                </a>
                 <a href="{% url 'logout' %}">
-                    <button type="button">Logout</button>
+                    <button type="button" class="logout-button">Logout</button>
                 </a>
             </div>
         </nav>
     </header>
 
     <main>
-        <h2>Welcome, {{ user.username }}!</h2>
+        <h2>My Subscriptions</h2>
         <form method="get" style="margin-bottom: 20px;">
     <label for="sort"><strong>Sort By:</strong></label>
     <select name="sort" id="sort" onchange="this.form.submit()">
@@ -61,8 +65,8 @@
             {% for sub in subscriptions %}
             <tr>
                 <td>{{ sub.software.subscription_name }}</td>
-                <td>{{ sub.date_subscribed|date:"M d, Y" }}</td>
-                <td>{{ sub.date_expired|default:"N/A" }}</td>
+                <td>{{ sub.date_subscribed|date:"m/d/Y"|default:"N/A" }}</td>
+                <td>{{ sub.date_expired|date:"m/d/Y"|default:"N/A" }}</td>
                 <td>${{ sub.total_cost }}</td>
                 <td>
                     {% if sub.currently_used %}

@@ -86,7 +86,7 @@ body {
 .login-button {
     width: 100%;
     padding: 0.9rem;
-    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    background: var(--mizzou-gold);
     color: var(--mizzou-black);
     border: 2px solid var(--mizzou-black);
     border-radius: 6px;
@@ -99,7 +99,7 @@ body {
 }
 
 .login-button:hover {
-    background: linear-gradient(135deg, var(--mizzou-gold-tint-1) 0%, var(--mizzou-gold) 100%);
+    background: var(--mizzou-gold-tint-3);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(253, 183, 25, 0.3);
 }
@@ -134,6 +134,22 @@ body {
     text-decoration: underline;
 }
 
+.admin-portal {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.admin-portal a {
+    color: var(--mizzou-black);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin-portal a:hover {
+    color: var(--mizzou-dark-gold);
+    text-decoration: underline;
+}
+
 .mizzou-branding {
     text-align: center;
     margin-top: 1.5rem;
@@ -161,28 +177,59 @@ body.dashboard-page {
     min-height: 100vh;
 }
 
+/*Header styling*/
 .page-container header,
 .dashboard-page header {
-    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    background: var(--mizzou-gold);
     color: var(--mizzou-black);
-    padding: 2rem 2rem;
-    text-align: center;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-bottom: 3px solid var(--mizzou-black);
+    text-align: left;
 }
 
 .header-nav {
-    margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 1200px;
+    padding: 0 1.5rem;
+    margin: 0 auto;
 }
 
-.nav-left,
+.nav-left
+{
+    display: flex;
+    align-items: center;
+    gap: 1.25rem; 
+}
 .nav-right {
     display: flex;
+    align-items: center;
     gap: 1rem;
+}
+
+.nav-left .brand {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mizzou-black);
+}
+
+.nav-left .brand:hover {
+    color: var(--mizzou-gold-tint-3);
+}
+
+.greeting {
+    font-weight: 600;
+    color: var(--mizzou-black);
+    margin-right: 0.5rem;
 }
 
 .header-nav a {
@@ -190,40 +237,40 @@ body.dashboard-page {
     display: inline-block;
 }
 
-.header-nav button {
-    padding: 0.7rem 1.5rem;
-    background-color: var(--mizzou-black);
-    color: var(--mizzou-gold);
-    border: 2px solid var(--mizzou-black);
+.header-nav .nav-right .logout-button:hover
+{
+    background: #A00000;
+    color: var(--mizzou-white);
+    border: 2px solid #A00000;
     border-radius: 6px;
-    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-.header-nav button:hover {
-    background-color: var(--mizzou-white);
+.header-nav .nav-right button {
+    background: var(--mizzou-black);
+    color: var(--mizzou-gold);
+    border: 2px solid var(--mizzou-black);
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.header-nav .nav-right button:hover {
+    background: var(--mizzou-gold-tint-3);
     color: var(--mizzou-black);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.page-container header h1,
-.dashboard-page header h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 2.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.page-container header p,
-.dashboard-page header p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: var(--mizzou-black-tint-1);
-    font-weight: 500;
 }
 
 /*Main area */
@@ -263,10 +310,10 @@ body.dashboard-page {
 
 .page-container th,
 .dashboard-page th {
-    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
-    color: var(--mizzou-black);
+    background: var(--mizzou-black);
+    color: var(--mizzou-gold);
     padding: 1rem;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -276,7 +323,7 @@ body.dashboard-page {
 .page-container td,
 .dashboard-page td {
     padding: 1rem;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid var(--mizzou-black-tint-3);
     color: var(--mizzou-black);
 }
@@ -313,10 +360,10 @@ body.dashboard-page {
 .dashboard-page .actions button,
 .page-container .btn,
 .dashboard-page .btn {
-    background: linear-gradient(135deg, var(--mizzou-black) 0%, var(--mizzou-black-tint-1) 100%);
+    background: var(--mizzou-black);
     color: var(--mizzou-gold);
     padding: 0.8rem 1.5rem;
-    border: 2px solid var(--mizzou-gold);
+    border: 2px solid var(--mizzou-black);
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
@@ -334,7 +381,7 @@ body.dashboard-page {
 .dashboard-page .actions button:hover,
 .page-container .btn:hover,
 .dashboard-page .btn:hover {
-    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%);
+    background: var(--mizzou-gold-tint-3);
     color: var(--mizzou-black);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(253, 183, 25, 0.3);

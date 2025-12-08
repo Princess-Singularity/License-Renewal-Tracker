@@ -5,28 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ software.subscription_name }} - Info</title>
-    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}?v=2">
 </head>
 <body class="dashboard-page">
 
     <header>
-        <h1>License Renewal Application Tracker (LRAT)</h1>
-        <p>License Information</p>
         <nav class="header-nav">
             <div class="nav-left">
-                <a href="{% url 'dashboard' %}">
-                    <button type="button">Back to Dashboard</button>
-                </a>
+                <a href="{% url 'dashboard' %}" class="brand">LRAT</a>
+                <span class="greeting">Welcome, {{ user.first_name }} {{ user.last_name }}!</span>
             </div>
             <div class="nav-right">
+                
+                <a href="{% url 'dashboard' %}">
+                    <button type="button">Dashboard</button>
+                </a>
+                <a href="{% url 'software_list' %}">
+                    <button type="button">All Software</button>
+                </a>
                 <a href="{% url 'logout' %}">
-                    <button type="button">Logout</button>
+                    <button type="button" class="logout-button">Logout</button>
                 </a>
             </div>
         </nav>
     </header>
-
-
     
     <main>
         <h2>{{ software.subscription_name }}</h2>
@@ -68,6 +70,10 @@
                 </p>
             {% endif %}
         </div>
+        <h2></h2>
+        <a href="{% url 'dashboard' %}">
+            <button type="button">Back</button>
+        </a>
     </main>
 
 </body>
