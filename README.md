@@ -1,41 +1,6 @@
 # License-Renewal-Tracker
 ---
 
-## Temp Account
-
-### Admin
-Username: superdylan
-
-Password: qwert
-
-Username: admin
-
-Password: P@ssword01
-### Standard
-Use **P@ssword01** for all users' passwords below
-
-Username: pmorgan
-
-Username: dduncan196
-
-Username: yzuniga311
-
-Username: nsilver278
-
-Username: nsilver230
-
-Username: edoyle415
-
-Username: yzuniga391
-
-Username: qadams80
-
-Username: aroberts64
-
-Username: gyoung85
-
-Username: ibrown273
-
 ## University of Missouri Senior Capstone Project
 
 A python app that imports information from an sql database to be parsed from a local mysql database for parsing and manipulation. The app will use Django to manage front end and backend logic so that data may be presented in a easy to comprehend manner to
@@ -74,3 +39,39 @@ LRAT is our solution to the confusion by consolidating information and allowing 
 The application should be designed to be as user friendly as possible for students and staff as the primary purpose is to reduce confusion. To do this we will have features allowing consumers to easily find all their licenses, the price and renewal terms, and links or documentation on how to cancel or renew said licenses. This will be accomplished by ensuring minimal clutter, intuitive UI, and proper help resources.  
 
 In our proposed project, we will work with the school's IT department to understand the format of their SQL data tables. This will allow the project to have real world application should they so desire. Our team will employ cyber security techniques to try and ensure confidentiality, integrity, and availability. To acquire pricing information of various licenses we will utilize multiple means such as web scrappers and coordinating with sales reps to allow IT roles accurate information. 
+
+
+## Temp Account
+
+### Admin
+Username: superdylan
+
+Password: qwert
+
+Username: admin
+
+Password: P@ssword01
+### Standard
+Use **P@ssword01** for all users' passwords below
+
+Username: pmorgan
+
+Username: dduncan196
+
+Username: yzuniga311
+
+Username: nsilver278
+
+Username: nsilver230
+
+Username: edoyle415
+
+Username: yzuniga391
+
+Username: qadams80
+
+Username: aroberts64
+
+Username: gyoung85
+
+Username: ibrown273
