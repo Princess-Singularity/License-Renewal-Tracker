@@ -1,6 +1,8 @@
 from decimal import Decimal
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
+from datetime import date, datetime
+from django.utils import timezone
 
 class DatabaseGroup(Group):
     class Meta:
@@ -81,3 +83,95 @@ class Subscription(models.Model):
         if self.option:
             return self.option.name
         return self.software.subscription_name
+
+    def _expiry_date(self):
+        """
+        Always return a date object (not datetime).
+        """
+        if not self.date_expired:
+            return None
+
+        expiry = self.date_expired
+
+        # Convert datetime to date
+        if isinstance(expiry, datetime):
+            if timezone.is_aware(expiry):
+                return timezone.localtime(expiry).date()
+            return expiry.date()
+
+        return expiry
+
+    @property
+    def days_remaining(self):
+        expiry = self._expiry_date()
+        if not expiry:
+            return None
+
+        today = timezone.localdate()
+        return (expiry - today).days
+
+    @property
+    def overdue_days(self):
+        if self.days_remaining is None:
+            return None
+        return max(0, -self.days_remaining)
+
+    @property
+    def months_and_days_remaining(self):
+        """
+        Returns a tuple: (months, days) remaining until expiry.
+        Example: (1, 23) = 1 month 23 days left.
+        Includes approx month calculation without external libraries.
+        """
+        expiry = self._expiry_date()
+        if not expiry:
+            return None, None
+
+        today = timezone.localdate()
+
+        # If expired
+        if expiry < today:
+            return 0, - (expiry - today).days
+
+        # Calculate Month
+        months = (expiry.year - today.year) * 12 + (expiry.month - today.month)
+
+        # If expiry day hasn't occurred yet, reduce 1 month
+        if expiry.day < today.day:
+            months -= 1
+
+        # Calculate Day
+        year = today.year + (today.month + months - 1) // 12
+        month = (today.month + months - 1) % 12 + 1
+        day = min(today.day, 28)
+        ref_date = date(year, month, day)
+        days = (expiry - ref_date).days
+
+        # fallback if something went wrong
+        if days < 0:
+            days = 0
+
+        return months, days
+
+    @property
+    def time_remaining_display(self):
+        # Check if software has no expiry date
+        if self.days_remaining is None:
+            return "N/A"
+
+        # Check if software is expired
+        if self.days_remaining < 0:
+            return f"Expired {self.overdue_days} days ago"
+
+        # Get months and days
+        months, days = self.months_and_days_remaining
+
+        # If month is at least 1 month
+        if months >= 1:
+            month_label = "month" if months == 1 else "months"
+            day_label = "day" if days == 1 else "days"
+            return f"{months} {month_label} and {days} {day_label} left"
+
+        # If license is less than one month then show days only
+        day_label = "day" if days == 1 else "days"
+        return f"{days} {day_label} left"

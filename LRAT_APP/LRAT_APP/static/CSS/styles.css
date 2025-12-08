@@ -344,6 +344,64 @@ body.dashboard-page {
     transition: background-color 0.3s ease;
 }
 
+th a {
+    color: var(--mizzou-gold);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+th a:hover {
+    text-decoration: underline;
+}
+
+table td a {
+    color: var(--mizzou-black);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+table td a:hover {
+    text-decoration: underline;
+}
+
+/*summary containers*/
+.summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    flex: 1; /* <— expands to fill row width evenly */
+    min-width: 200px;
+}
+
+/*individual summary card*/
+.summary-card {
+    background: var(--mizzou-black);
+    border-radius: 8px;
+    padding: 14px 20px;
+    min-width: 200px;
+    border: 2px solid var(--mizzou-black);
+}
+
+/*label text*/
+.summary-card .label {
+    display: block;
+    font-size: 1rem;
+    color: var(--mizzou-gold);
+}
+
+/*value text*/
+.summary-card .value {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--mizzou-gold);
+}
+
 /*buttons*/
 .page-container .actions,
 .dashboard-page .actions {

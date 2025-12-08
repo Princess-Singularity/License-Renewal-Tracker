@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LRAT - Student Dashboard</title>
+    <title>LRAT - Dashboard</title>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}?v=2">
 </head>
 <body class="dashboard-page">
@@ -32,39 +32,110 @@
 
     <main>
         <h2>My Subscriptions</h2>
-        <form method="get" style="margin-bottom: 20px;">
-    <label for="sort"><strong>Sort By:</strong></label>
-    <select name="sort" id="sort" onchange="this.form.submit()">
-        <option value="software__subscription_name" {% if current_sort == 'software__subscription_name' and direction == 'asc' %}selected{% endif %}>Software Name ↑</option>
-        <option value="-software__subscription_name" {% if current_sort == 'software__subscription_name' and direction == 'desc' %}selected{% endif %}>Software Name ↓</option>
 
-        <option value="date_subscribed" {% if current_sort == 'date_subscribed' and direction == 'asc' %}selected{% endif %}>Start Date ↑</option>
-        <option value="-date_subscribed" {% if current_sort == 'date_subscribed' and direction == 'desc' %}selected{% endif %}>Start Date ↓</option>
+        <div class="summary-container">
+            <div class="summary-card">
+                <span class="label">Total Subscriptions</span>
+                <span class="value">{{ total_subscriptions }}</span>
+            </div>
 
-        <option value="date_expired" {% if current_sort == 'date_expired' and direction == 'asc' %}selected{% endif %}>End Date ↑</option>
-        <option value="-date_expired" {% if current_sort == 'date_expired' and direction == 'desc' %}selected{% endif %}>End Date ↓</option>
+            <div class="summary-card">
+                <span class="label">Total Active</span>
+                <span class="value">{{ total_active }}</span>
+            </div>
 
-        <option value="total_cost" {% if current_sort == 'total_cost' and direction == 'asc' %}selected{% endif %}>Cost ↑</option>
-        <option value="-total_cost" {% if current_sort == 'total_cost' and direction == 'desc' %}selected{% endif %}>Cost ↓</option>
+            <div class="summary-card">
+                <span class="label">Total Expired</span>
+                <span class="value">{{ total_expired }}</span>
+            </div>
 
-        <option value="currently_used" {% if current_sort == 'currently_used' and direction == 'asc' %}selected{% endif %}>Status ↑ (Expired → Active)</option>
-        <option value="-currently_used" {% if current_sort == 'currently_used' and direction == 'desc' %}selected{% endif %}>Status ↓ (Active → Expired)</option>
-    </select>
-</form>
+            <div class="summary-card">
+                <span class="label">Total Cost for Active Subscriptions</span>
+                <span class="value">${{ total_cost }}</span>
+            </div>
+        </div>
 
         <table>
             <tr>
-                <th>Software Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Cost</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>
+                    <a href="?sort={% if current_sort == 'software__subscription_name' %}-software__subscription_name{% else %}software__subscription_name{% endif %}">
+                        {% if current_sort == 'software__subscription_name' %}
+                            Software Name ▲
+                        {% elif current_sort == '-software__subscription_name' %}
+                            Software Name ▼
+                        {% else %}
+                            Software Name
+                        {% endif %}
+                    </a>
+                </th>
+
+                <th>
+                    <a href="?sort={% if current_sort == 'date_subscribed' %}-date_subscribed{% else %}date_subscribed{% endif %}">
+                        {% if current_sort == 'date_subscribed' %}
+                            Start Date ▲
+                        {% elif current_sort == '-date_subscribed' %}
+                            Start Date ▼
+                        {% else %}
+                            Start Date
+                        {% endif %}
+                    </a>
+                </th>
+
+                <th>
+                    <a href="?sort={% if current_sort == 'date_expired' %}-date_expired{% else %}date_expired{% endif %}">
+                        {% if current_sort == 'date_expired' %}
+                            End Date ▲
+                        {% elif current_sort == '-date_expired' %}
+                            End Date ▼
+                        {% else %}
+                            End Date
+                        {% endif %}
+                    </a>
+                </th>
+
+                <th>
+                    <a href="?sort={% if current_sort == 'total_cost' %}-total_cost{% else %}total_cost{% endif %}">
+                        {% if current_sort == 'total_cost' %}
+                            Cost ▲
+                        {% elif current_sort == '-total_cost' %}
+                            Cost ▼
+                        {% else %}
+                            Cost
+                        {% endif %}
+                    </a>
+                </th>
+
+                <th>
+                    <a href="?sort={% if current_sort == 'currently_used' %}-currently_used{% else %}currently_used{% endif %}">
+                        {% if current_sort == 'currently_used' %}
+                            Status ▲
+                        {% elif current_sort == '-currently_used' %}
+                            Status ▼
+                        {% else %}
+                            Status
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort={% if current_sort == 'date_expired' %}-date_expired{% else %}date_expired{% endif %}">
+                        {% if current_sort == 'date_expired' %}
+                            Remaining ▲
+                        {% elif current_sort == '-date_expired' %}
+                            Remaining ▼
+                        {% else %}
+                            Remaining
+                        {% endif %}
+                    </a>
+                </th>
             </tr>
 
             {% for sub in subscriptions %}
             <tr>
-                <td>{{ sub.software.subscription_name }}</td>
+                <td>
+                    <a href="{% url 'license_info' sub.software.software_id %}">
+                        {{ sub.software.subscription_name }}
+                    </a>
+                </td>
                 <td>{{ sub.date_subscribed|date:"m/d/Y"|default:"N/A" }}</td>
                 <td>{{ sub.date_expired|date:"m/d/Y"|default:"N/A" }}</td>
                 <td>${{ sub.total_cost }}</td>
@@ -75,21 +146,16 @@
                         Expired
                     {% endif %}
                 </td>
-               <td>
-    <a href="{% url 'license_info' sub.software.software_id %}">
-        <button type="button">Info</button>
-    </a>
-    </td>
+                <td>{{ sub.time_remaining_display }}</td>
             </tr>
             {% empty %}
             <tr>
                 <td colspan="6">No subscriptions yet.</td>
             </tr>
+            
             {% endfor %}
         </table>
     </main>
 
 </body>
 </html>
-
-

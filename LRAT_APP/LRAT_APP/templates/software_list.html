@@ -29,34 +29,105 @@
             </div>
         </nav>
     </header>
-
+ 
     <main>
         <h2>All Available Software ({{ total_count }} entries)</h2>
-
         {% if software_entries %}
             <table>
                 <tr>
-                    <th>Software Name</th>
-                    <th>Cost</th>
-                    <th>Term (months)</th>
-                    <th>License Start</th>
-                    <th>License End</th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'subscription_name' %}-subscription_name{% else %}subscription_name{% endif %}">
+                            {% if current_sort == 'subscription_name' %}
+                                Software Name ▲
+                            {% elif current_sort == '-subscription_name' %}
+                                Software Name ▼
+                            {% else %}
+                                Software Name
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'cost' %}-cost{% else %}cost{% endif %}">
+                            {% if current_sort == 'cost' %}
+                                Cost ▲
+                            {% elif current_sort == '-cost' %}
+                                Cost ▼
+                            {% else %}
+                                Cost
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'term' %}-term{% else %}term{% endif %}">
+                            {% if current_sort == 'term' %}
+                                Term ▲
+                            {% elif current_sort == '-term' %}
+                                Term ▼
+                            {% else %}
+                                Term
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'license_start' %}-license_start{% else %}license_start{% endif %}">
+                            {% if current_sort == 'license_start' %}
+                                License Start ▲
+                            {% elif current_sort == '-license_start' %}
+                                License Start ▼
+                            {% else %}
+                                License Start
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'license_end' %}-license_end{% else %}license_end{% endif %}">
+                            {% if current_sort == 'license_end' %}
+                                License End ▲
+                            {% elif current_sort == '-license_end' %}
+                                License End ▼
+                            {% else %}
+                                License End
+                            {% endif %}
+                        </a>
+                    </th>
                     <th>Description</th>
-                    <th>Status</th>
+                    <th>
+                        <a href="?sort={% if current_sort == 'is_active' %}-is_active{% else %}is_active{% endif %}">
+                            {% if current_sort == 'is_active' %}
+                                Status ▲
+                            {% elif current_sort == '-is_active' %}
+                                Status ▼
+                            {% else %}
+                                Status
+                            {% endif %}
+                        </a>
+                    </th>
                 </tr>
+
                 {% for software in software_entries %}
-                <tr>
-                    <td>{{ software.subscription_name }}</td>
+                <tr class="clickable-row"></tr>
+                    <td>
+                        <a href="{% url 'license_info' software.software_id %}">
+                            {{ software.subscription_name }}
+                        </a>
+                    </td>
                     <td>${{ software.cost }}</td>
                     <td>{{ software.term }}</td>
                     <td>{{ software.license_start|date:"m/d/Y"|default:"N/A" }}</td>
                     <td>{{ software.license_end|date:"m/d/Y"|default:"N/A" }}</td>
                     <td>{{ software.description|truncatewords:10|default:"No description" }}</td>
-                    <td>{% if software.is_active %}Active{% else %}Inactive{% endif %}</td>
+                    <td>
+                        {% if software.is_active and software.license_start and software.license_end %}
+                            Active
+                        {% else %}
+                            Inactive
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
-        {% else %}
+
+            {% else %}
             <div class="no-data">
                 <p>No software entries found in the database.</p>
             </div>

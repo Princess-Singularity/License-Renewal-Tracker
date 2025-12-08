@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import path
-from DATABASE_APP.models import CustomUser, Subscription
-
+from DATABASE_APP.models import CustomUser, Software, Subscription
+from django.db import models
 
 #Start of program
 def rootPage(request):
@@ -30,6 +30,8 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+    # fetch user subscriptions
+    subscriptions = Subscription.objects.filter(user=request.user)
     # read sort option from dropdown
     sort_by = request.GET.get('sort', 'date_subscribed')
 
@@ -47,17 +49,30 @@ def dashboard(request):
         sort_by = 'date_subscribed'
 
     # apply sorting to the query
-    user_subscriptions = Subscription.objects.filter(user=request.user).order_by(sort_by)
+    sort = request.GET.get("sort", "software__subscription_name")
+    subscriptions = (
+        Subscription.objects
+        .filter(user=request.user)
+        .order_by(sort)
+    )
 
-    # send current sort info to the template
+    total_subscriptions = subscriptions.count()
+    total_active = subscriptions.filter(currently_used=True).count()
+    total_expired = subscriptions.filter(currently_used=False).count()
+    raw_total_cost = subscriptions.filter(currently_used=True).aggregate(sum_cost=models.Sum("total_cost"))["sum_cost"] or 0
+    total_cost = f"{raw_total_cost:,.2f}"
+
     context = {
-        'user': request.user,
-        'subscriptions': user_subscriptions,
-        'current_sort': sort_by.lstrip('-'),
-        'direction': 'desc' if sort_by.startswith('-') else 'asc',
+        'subscriptions': subscriptions,
+        'current_sort': sort,
+        'total_subscriptions': total_subscriptions,
+        'total_active': total_active,
+        'total_expired': total_expired,
+        'total_cost': total_cost,
     }
 
-    return render(request, 'dashboard.html', context)
+    # render the dashboard template
+    return render(request, "dashboard.html", context)
 
 @login_required
 def license_info(request, software_id):
@@ -77,4 +92,3 @@ def user_logout(request):
 
 def settings(request):
     return HttpResponse("Settings Page")
-

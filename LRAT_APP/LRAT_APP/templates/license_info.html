@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ software.subscription_name }} - Info</title>
+    <title>LRAT - {{ software.subscription_name }} Info</title>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/styles.css' %}?v=2">
 </head>
 <body class="dashboard-page">
@@ -29,7 +29,7 @@
             </div>
         </nav>
     </header>
-    
+
     <main>
         <h2>{{ software.subscription_name }}</h2>
         
@@ -71,9 +71,7 @@
             {% endif %}
         </div>
         <h2></h2>
-        <a href="{% url 'dashboard' %}">
-            <button type="button">Back</button>
-        </a>
+        <button type="button" onclick="history.back()">Back</button>
     </main>
 
 </body>
