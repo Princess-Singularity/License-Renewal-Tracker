@@ -22,6 +22,17 @@
     color: var(--mizzou-black) !important;
 }
 
+/*hides dark mode button*/
+#header .theme-toggle,
+#header button[data-theme-toggle] {
+    display: none !important;
+}
+
+#content-main h2,
+#content-main caption {
+    color: var(--mizzou-gold) !important;
+}
+
 #branding h1,
 #branding h1 a:link,
 #branding h1 a:visited {
@@ -33,6 +44,15 @@
 
 #branding h1 a:hover {
     color: var(--mizzou-black-tint-1) !important;
+}
+
+/* Navigation sidebar toggle button - make it half width */
+button#toggle-nav-sidebar.sticky.toggle-nav-sidebar,
+#main button#toggle-nav-sidebar,
+.main button.toggle-nav-sidebar {
+    width: 30px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
 }
 
 /*header tools*/
@@ -73,6 +93,30 @@ div.breadcrumbs a:hover {
     background: var(--mizzou-black) !important;
     color: var(--mizzou-gold) !important;
     font-weight: bold !important;
+}
+
+
+/*make Database App text on admin home page visable and not clickable*/
+.module h2 a,
+.module h2 a:link,
+.module h2 a:visited,
+.module h2 a:hover,
+.module h2 a:active,
+.module caption a,
+.module caption a:link,
+.module caption a:visited,
+.module caption a:hover,
+.module caption a:active,
+#content-main .module h2 a,
+#content-main .module h2 a:link,
+#content-main .module h2 a:visited,
+#content-main .module h2 a:hover,
+#content-main .module h2 a:active {
+    color: var(--mizzou-gold) !important;
+    text-decoration: none !important;
+    pointer-events: none !important;
+    cursor: default !important;
+    background: transparent !important;
 }
 
 /*yable head*/
@@ -148,14 +192,29 @@ button:hover {
 
 .actions button,
 .actions select {
-    background: var(--mizzou-black) !important;
-    color: var(--mizzou-gold) !important;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+    color: var(--mizzou-black) !important;
     border: 2px solid var(--mizzou-black) !important;
+    vertical-align: middle !important;
+    line-height: 1.2 !important;
+    padding: 10px 15px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    display: inline-block !important;
+    height: auto !important;
+    min-height: 35px !important;
+}
+
+.actions select {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
 }
 
 .actions button:hover {
-    background: var(--mizzou-gold) !important;
-    color: var(--mizzou-black) !important;
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
 }
 
 .deletelink,
@@ -207,6 +266,24 @@ button:hover {
     font-weight: bold !important;
 }
 
+/* Links inside h3 headers need to be gold too */
+#changelist-filter h3 a,
+#changelist-filter h3 a:link,
+#changelist-filter h3 a:visited,
+#changelist-filter-extra-actions a,
+#changelist-filter-extra-actions a.viewlink,
+#changelist-filter-extra-actions a.viewlink:link,
+#changelist-filter-extra-actions a.viewlink:visited {
+    color: var(--mizzou-gold) !important;
+    text-decoration: none !important;
+}
+
+#changelist-filter h3 a:hover,
+#changelist-filter-extra-actions a:hover,
+#changelist-filter-extra-actions a.viewlink:hover {
+    color: var(--mizzou-gold-tint-1) !important;
+}
+
 #changelist-filter li.selected a {
     color: var(--mizzou-gold) !important;
     background: var(--mizzou-black) !important;
@@ -214,10 +291,27 @@ button:hover {
     border-radius: 4px !important;
 }
 
-#changelist-filter a:hover {
+/* Filter links - all variations */
+#changelist-filter a,
+#changelist-filter a:link,
+#changelist-filter a:visited,
+#changelist-filter li a,
+#changelist-filter ul li a,
+#changelist-filter details summary,
+#changelist-filter details summary:link,
+#changelist-filter details summary:visited {
+    color: var(--mizzou-black) !important;
+    text-decoration: none !important;
+}
+
+#changelist-filter a:hover,
+#changelist-filter li a:hover,
+#changelist-filter ul li a:hover,
+#changelist-filter details summary:hover {
     background: var(--mizzou-gold-tint-2) !important;
     padding: 5px 10px !important;
     border-radius: 4px !important;
+    color: var(--mizzou-black) !important;
 }
 
 /*search box*/
@@ -263,15 +357,16 @@ button:hover {
 }
 
 .object-tools li a {
-    background: var(--mizzou-black) !important;
-    color: var(--mizzou-gold) !important;
+    background: linear-gradient(135deg, var(--mizzou-gold) 0%, var(--mizzou-gold-tint-1) 100%) !important;
+    color: var(--mizzou-black) !important;
+    border: 2px solid var(--mizzou-black) !important;
     border-radius: 6px !important;
     font-weight: bold !important;
 }
 
 .object-tools li a:hover {
-    background: var(--mizzou-gold) !important;
-    color: var(--mizzou-black) !important;
+    background: var(--mizzou-black) !important;
+    color: var(--mizzou-gold) !important;
 }
 
 .paginator a:link,
@@ -320,10 +415,13 @@ button:hover {
 
 #content-main .module h2 a {
     color: var(--mizzou-gold) !important;
+    text-decoration: none !important;
+    pointer-events: none !important;
+    cursor: default !important;
 }
 
 #content-main .module h2 a:hover {
-    color: var(--mizzou-gold-tint-1) !important;
+    color: var(--mizzou-gold) !important;
 }
 
 /*admin login page*/
