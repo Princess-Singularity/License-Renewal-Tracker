@@ -28,6 +28,11 @@
     display: none !important;
 }
 
+/*hides "site administration" */
+#content h1 {
+    display: none !important;
+}
+
 #content-main h2,
 #content-main caption {
     color: var(--mizzou-gold) !important;
@@ -46,7 +51,7 @@
     color: var(--mizzou-black-tint-1) !important;
 }
 
-/* Navigation sidebar toggle button - make it half width */
+/*sidebar toggle button resize */
 button#toggle-nav-sidebar.sticky.toggle-nav-sidebar,
 #main button#toggle-nav-sidebar,
 .main button.toggle-nav-sidebar {
@@ -458,4 +463,14 @@ button:hover {
 p.help,
 form .form-row p.help {
     color: var(--mizzou-black-tint-2) !important;
+}
+
+/*moves Add button*/
+.object-tools {
+    position: static !important;
+    float: none !important;
+    display: inline-block !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+    vertical-align: middle !important;
 }
