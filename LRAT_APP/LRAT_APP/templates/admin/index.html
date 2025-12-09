@@ -12,7 +12,7 @@
 {% block sidebar %}
 <div id="content-related">
     <div class="module" id="recent-actions-module">
-        <h2>Recent Actions</h2>
+        <h2>RECENT ACTIONS</h2>
         {% load log %}
         {% get_admin_log 10 as admin_log for_user user %}
         {% if not admin_log %}

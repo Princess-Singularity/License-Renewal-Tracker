@@ -91,13 +91,15 @@ div.breadcrumbs a:hover {
     background: var(--mizzou-white) !important;
 }
 
-/*module head*/
+/*module head (Recent Actions)*/
 .module h2,
 .module caption,
 .inline-group h2 {
     background: var(--mizzou-black) !important;
     color: var(--mizzou-gold) !important;
     font-weight: bold !important;
+    padding: 10px 15px !important;
+    font-size: 1.1rem !important;
 }
 
 
@@ -468,4 +470,24 @@ form .form-row p.help {
 /*moves Add button*/
 .object-tools {
     display: none !important;
+}
+
+/*Centers Database App and recent actions tables*/
+.dashboard #content {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 2% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+
+.dashboard #content-main {
+    flex: 1 !important;
+    max-width: 48% !important;
+}
+
+.dashboard #content-related {
+    flex: 1 !important;
+    max-width: 48% !important;
 }
