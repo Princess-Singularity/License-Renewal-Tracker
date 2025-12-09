@@ -467,10 +467,5 @@ form .form-row p.help {
 
 /*moves Add button*/
 .object-tools {
-    position: static !important;
-    float: none !important;
-    display: inline-block !important;
-    margin-left: 0px !important;
-    margin-top: 0px !important;
-    vertical-align: middle !important;
+    display: none !important;
 }
